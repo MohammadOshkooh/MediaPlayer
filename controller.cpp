@@ -29,8 +29,8 @@ Controller::~Controller()
 
 void Controller::on_pushButton_chooseToPlay_clicked()
 {
-    player = new ChooseToPlay;
-    player->show();
+    chooseToPlay = new ChooseToPlay;
+    chooseToPlay->show();
 }
 
 void Controller::on_pushButton_setting_clicked()

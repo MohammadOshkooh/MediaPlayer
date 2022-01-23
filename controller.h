@@ -16,7 +16,7 @@ class Controller : public QWidget
 
 public:
     explicit Controller(QWidget *parent = nullptr);
-    ChooseToPlay *player;
+    ChooseToPlay *chooseToPlay;
     Setting *setting;
     Playlist *playlist;
 

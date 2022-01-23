@@ -13,6 +13,7 @@ class Setting : public QWidget
 
 public:
     explicit Setting(QWidget *parent = nullptr);
+    Setting *setting;
     ~Setting();
 
 private:

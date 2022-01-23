@@ -1,5 +1,8 @@
 <RCC>
     <qresource prefix="/new/prefix1">
         <file>p.jpg</file>
+        <file>../../Ot project/myPlayer/ref/New folder/Pause.svg</file>
+        <file>../../Ot project/myPlayer/ref/New folder/Play.svg</file>
+        <file>../../Ot project/myPlayer/ref/New folder/Stop.svg</file>
     </qresource>
 </RCC>

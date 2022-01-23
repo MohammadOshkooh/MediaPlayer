@@ -1,7 +1,7 @@
 #ifndef PLAYLIST_H
 #define PLAYLIST_H
 
-#include <QWidget>
+#include <QMainWindow>
 
 namespace Ui {
 class Playlist;
@@ -13,6 +13,7 @@ class Playlist : public QWidget
 
 public:
     explicit Playlist(QWidget *parent = nullptr);
+    Playlist *playlist;
     ~Playlist();
 
 private:
