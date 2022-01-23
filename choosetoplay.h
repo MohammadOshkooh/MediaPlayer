@@ -6,6 +6,7 @@
 #include <QVideoWidget>
 #include <QFileDialog>
 #include <QSlider>
+#include <QLabel>
 
 namespace Ui {
 class ChooseToPlay;
@@ -20,6 +21,7 @@ public:
     QMediaPlayer *player;
     QVideoWidget *videoWidget;
     QSlider *slider;
+    QLabel *volume_label;
     ~ChooseToPlay();
 
 private slots:
@@ -28,6 +30,18 @@ private slots:
     void on_actionPause_triggered();
 
     void on_actionaAtFirst_triggered();
+
+    void on_actionJump_back_triggered();
+
+    void on_actionJump_forward_triggered();
+
+    void on_actionmute_triggered();
+
+    void on_actionvolume_increase_triggered();
+
+    void on_actionvolume_dencrease_triggered();
+
+    void on_actionopen_triggered();
 
 private:
     Ui::ChooseToPlay *ui;

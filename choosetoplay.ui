@@ -14,16 +14,6 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget"/>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>848</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QToolBar" name="toolBar">
    <property name="windowTitle">
     <string>toolBar</string>
@@ -34,9 +24,22 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionPlay"/>
-   <addaction name="actionPause"/>
+   <addaction name="actionprevious_video"/>
+   <addaction name="actionJump_back"/>
+   <addaction name="separator"/>
    <addaction name="actionaAtFirst"/>
+   <addaction name="actionPause"/>
+   <addaction name="separator"/>
+   <addaction name="actionPlay"/>
+   <addaction name="actionJump_forward"/>
+   <addaction name="actionnext_video"/>
+   <addaction name="separator"/>
+   <addaction name="actionopen"/>
+   <addaction name="separator"/>
+   <addaction name="actionmute"/>
+   <addaction name="actionvolume_dencrease"/>
+   <addaction name="actionvolume_increase"/>
+   <addaction name="separator"/>
   </widget>
   <action name="actionaAtFirst">
    <property name="icon">
@@ -68,8 +71,81 @@
     <string>Pause</string>
    </property>
   </action>
+  <action name="actionnext_video">
+   <property name="icon">
+    <iconset resource="image.qrc">
+     <normaloff>:/new/prefix2/n.svg</normaloff>:/new/prefix2/n.svg</iconset>
+   </property>
+   <property name="text">
+    <string>next video</string>
+   </property>
+  </action>
+  <action name="actionprevious_video">
+   <property name="icon">
+    <iconset resource="image.qrc">
+     <normaloff>:/new/prefix2/p.svg</normaloff>:/new/prefix2/p.svg</iconset>
+   </property>
+   <property name="text">
+    <string>previous video</string>
+   </property>
+  </action>
+  <action name="actionvolume_increase">
+   <property name="icon">
+    <iconset resource="image.qrc">
+     <normaloff>:/new/prefix2/9a7ebf32-a58d-40c2-86ed-b51339710bde.svg</normaloff>:/new/prefix2/9a7ebf32-a58d-40c2-86ed-b51339710bde.svg</iconset>
+   </property>
+   <property name="text">
+    <string>volume increase </string>
+   </property>
+  </action>
+  <action name="actionvolume_dencrease">
+   <property name="icon">
+    <iconset resource="image.qrc">
+     <normaloff>:/new/prefix2/a7be06f6-380d-45e7-a2f9-9525169d5fba.svg</normaloff>:/new/prefix2/a7be06f6-380d-45e7-a2f9-9525169d5fba.svg</iconset>
+   </property>
+   <property name="text">
+    <string>volume dencrease</string>
+   </property>
+  </action>
+  <action name="actionmute">
+   <property name="icon">
+    <iconset resource="image.qrc">
+     <normaloff>:/new/prefix2/9115725f-5dea-4821-914e-4b2eb091dec9.svg</normaloff>:/new/prefix2/9115725f-5dea-4821-914e-4b2eb091dec9.svg</iconset>
+   </property>
+   <property name="text">
+    <string>mute</string>
+   </property>
+  </action>
+  <action name="actionJump_back">
+   <property name="icon">
+    <iconset resource="image.qrc">
+     <normaloff>:/new/prefix2/e5c5bd90-afe4-444e-b094-25a2164c8fc0.svg</normaloff>:/new/prefix2/e5c5bd90-afe4-444e-b094-25a2164c8fc0.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Jump back</string>
+   </property>
+  </action>
+  <action name="actionJump_forward">
+   <property name="icon">
+    <iconset resource="image.qrc">
+     <normaloff>:/new/prefix2/e42aa6dd-55db-45db-8284-230cf2c5e03d.svg</normaloff>:/new/prefix2/e42aa6dd-55db-45db-8284-230cf2c5e03d.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Jump forward</string>
+   </property>
+  </action>
+  <action name="actionopen">
+   <property name="icon">
+    <iconset resource="image.qrc">
+     <normaloff>:/new/prefix2/open.svg</normaloff>:/new/prefix2/open.svg</iconset>
+   </property>
+   <property name="text">
+    <string>open</string>
+   </property>
+  </action>
  </widget>
  <resources>
+  <include location="image.qrc"/>
   <include location="img.qrc"/>
  </resources>
  <connections/>

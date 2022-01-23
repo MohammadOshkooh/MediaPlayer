@@ -4,6 +4,9 @@
 #include <QVideoWidget>
 #include <QFileDialog>
 #include <QProgressBar>
+#include <iostream>
+
+using namespace std;
 
 ChooseToPlay::ChooseToPlay(QWidget *parent) :
     QMainWindow(parent),
@@ -22,11 +25,11 @@ ChooseToPlay::ChooseToPlay(QWidget *parent) :
     this->setCentralWidget(videoWidget);
 
 
-    // create a slider
+//  create a slider
     slider = new QSlider(this);
     slider->setOrientation(Qt::Horizontal);
 
-//    slider->setSi
+//  slider->setSi
 
     ui->toolBar->addWidget(slider);
 
@@ -34,6 +37,18 @@ ChooseToPlay::ChooseToPlay(QWidget *parent) :
     connect(player,&QMediaPlayer::positionChanged,slider,&QSlider::setValue);
 
     connect(slider,&QSlider::sliderMoved,player,&QMediaPlayer::setPosition);
+
+
+
+//  show volum
+    QLabel *l = new QLabel;
+    l->setText("  volume:");
+    ui->toolBar->addWidget(l);
+
+    volume_label = new QLabel;
+    QString volume = QString::number( player->volume());
+    volume_label->setText(volume);
+    ui->toolBar->addWidget(volume_label);
 
 
 
@@ -60,4 +75,50 @@ void ChooseToPlay::on_actionPause_triggered()
 void ChooseToPlay::on_actionaAtFirst_triggered()
 {
     player->setPosition(0);
+}
+
+void ChooseToPlay::on_actionJump_back_triggered()
+{
+    int pos = player->position();
+//    std::cout<<pos<<std::endl;
+    player->setPosition(pos-2000);
+}
+
+void ChooseToPlay::on_actionJump_forward_triggered()
+{
+    int pos = player->position();
+    player->setPosition(pos+2000);
+}
+
+void ChooseToPlay::on_actionmute_triggered()
+{
+    player->setVolume(0);
+    volume_label->setText("0");
+}
+
+void ChooseToPlay::on_actionvolume_increase_triggered()
+{
+    int volum = player->volume();
+    player->setVolume(volum+1);
+    volume_label->setText(QString::number( player->volume()));
+
+}
+
+void ChooseToPlay::on_actionvolume_dencrease_triggered()
+{
+    int volum = player->volume();
+    player->setVolume(volum-1);
+    volume_label->setText(QString::number( player->volume()));
+
+}
+
+void ChooseToPlay::on_actionopen_triggered()
+{
+    QString Filename = QFileDialog::getOpenFileName(this,"Open a File","","Video File(*.mp4, *.wmv)");
+
+    player->setMedia(QUrl::fromLocalFile(Filename));
+    player->setVideoOutput(videoWidget);
+    this->setCentralWidget(videoWidget);
+
+    on_actionPlay_triggered();
 }

@@ -2,10 +2,13 @@
     <qresource prefix="/new/prefix1"/>
     <qresource prefix="/new/prefix2">
         <file>—Pngtree—beautiful technology website business poster_1107136.jpg</file>
-        <file>../../9a7ebf32-a58d-40c2-86ed-b51339710bde.svg</file>
-        <file>../../9115725f-5dea-4821-914e-4b2eb091dec9.svg</file>
-        <file>../../a7be06f6-380d-45e7-a2f9-9525169d5fba.svg</file>
-        <file>../../e5c5bd90-afe4-444e-b094-25a2164c8fc0.svg</file>
-        <file>../../e42aa6dd-55db-45db-8284-230cf2c5e03d.svg</file>
+        <file>9a7ebf32-a58d-40c2-86ed-b51339710bde.svg</file>
+        <file>9115725f-5dea-4821-914e-4b2eb091dec9.svg</file>
+        <file>a7be06f6-380d-45e7-a2f9-9525169d5fba.svg</file>
+        <file>e5c5bd90-afe4-444e-b094-25a2164c8fc0.svg</file>
+        <file>e42aa6dd-55db-45db-8284-230cf2c5e03d.svg</file>
+        <file>n.svg</file>
+        <file>p.svg</file>
+        <file>open.svg</file>
     </qresource>
 </RCC>
