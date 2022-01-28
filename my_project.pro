@@ -22,19 +22,19 @@ SOURCES += \
     choosetoplay.cpp \
     controller.cpp \
     main.cpp \
-    playlist.cpp \
+    playlistclass.cpp \
     setting.cpp
 
 HEADERS += \
     choosetoplay.h \
     controller.h \
-    playlist.h \
+    playlistclass.h \
     setting.h
 
 FORMS += \
     choosetoplay.ui \
     controller.ui \
-    playlist.ui \
+    playlistclass.ui \
     setting.ui
 
 # Default rules for deployment.

@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include "choosetoplay.h"
-#include "playlist.h"
+#include "playlistclass.h"
 #include "setting.h"
 
 namespace Ui {
@@ -18,7 +18,10 @@ public:
     explicit Controller(QWidget *parent = nullptr);
     ChooseToPlay *chooseToPlay;
     Setting *setting;
-    Playlist *playlist;
+    PlaylistClass *plClass;
+
+    QMediaPlayer *player;
+    QMediaPlaylist *playlist;
 
     ~Controller();
 

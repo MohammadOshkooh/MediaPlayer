@@ -4,7 +4,7 @@
 #include<QPixmap>
 
 #include "choosetoplay.h"
-#include "playlist.h"
+#include "playlistclass.h"
 #include "setting.h"
 
 Controller::Controller(QWidget *parent) :
@@ -20,6 +20,12 @@ Controller::Controller(QWidget *parent) :
     palette.setBrush(QPalette::Background, bkgnd);
     this->setPalette(palette);
 
+    player = new QMediaPlayer();
+    playlist = new QMediaPlaylist();
+
+    chooseToPlay = new ChooseToPlay(this,player,playlist);
+    plClass = new PlaylistClass(player,playlist);
+    setting = new Setting();
 
 
 }
@@ -31,18 +37,15 @@ Controller::~Controller()
 
 void Controller::on_pushButton_chooseToPlay_clicked()
 {
-    chooseToPlay = new ChooseToPlay;
     chooseToPlay->show();
 }
 
 void Controller::on_pushButton_setting_clicked()
 {
-    setting = new Setting;
     setting->show();
 }
 
 void Controller::on_pushButton_playlist_clicked()
 {
-    playlist = new Playlist;
-    playlist->show();
+    plClass->show();
 }

@@ -6,54 +6,29 @@
 #include <QProgressBar>
 #include <iostream>
 #include <QMediaPlaylist>
-#include "playlist.h"
+#include "playlistclass.h"
 
 using namespace std;
 
-void Write(QString text) {
-    QString Filename = "C:/Users/admin/Desktop/write/a.txt";
-    QFile MyFile(Filename);
-    if(!MyFile.open(QFile::WriteOnly | QFile::Text))
-    {
-    qDebug() << "could not open file for reading";
-    return; }
 
-    QTextStream out(&MyFile);
-    out << text;
-    std::cout << "The text is written!";
-    MyFile.flush();
-    MyFile.close();
-}
-
-ChooseToPlay::ChooseToPlay(QWidget *parent) :
+ChooseToPlay::ChooseToPlay(QWidget *parent, QMediaPlayer *qmp, QMediaPlaylist *qmpl) :
     QMainWindow(parent),
     ui(new Ui::ChooseToPlay)
 {
     ui->setupUi(this);
 
-    player = new QMediaPlayer(this);
+    player = qmp;
     videoWidget = new QVideoWidget(this);
-    playlist = new QMediaPlaylist(player);
-
-    // open a file
-    QString Filename = QFileDialog::getOpenFileName(this,"Open a File","","Video File(*.mp4 , *.wmv)");
-
-  //  for(const QString & name: Filename){
-     playlist->addMedia(QMediaContent(QUrl::fromLocalFile(Filename)));
-   // }
-
-
-//     Write(Filename);
-
+    playlist = qmpl;
+    playlistClass = new PlaylistClass(player, playlist);
 
     player->setPlaylist(playlist);
 
-    player->setMedia(QUrl::fromLocalFile(Filename));
     player->setVideoOutput(videoWidget);
     this->setCentralWidget(videoWidget);
 
 
-//  create a slider
+    //  create a slider
     slider = new QSlider(this);
     slider->setOrientation(Qt::Horizontal);
     ui->toolBar->addWidget(slider);
@@ -63,7 +38,8 @@ ChooseToPlay::ChooseToPlay(QWidget *parent) :
 
     connect(slider,&QSlider::sliderMoved,player,&QMediaPlayer::setPosition);
 
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+  //  connect(playlist, &QMediaPlaylist::currentIndexChanged, this, &Player::playlistPositionChanged);
 
 //  show volum
     QLabel *l = new QLabel;
@@ -87,7 +63,6 @@ ChooseToPlay::~ChooseToPlay()
 
 void ChooseToPlay::on_actionPlay_triggered()
 {
-
     player->play();
 }
 
@@ -104,7 +79,6 @@ void ChooseToPlay::on_actionaAtFirst_triggered()
 void ChooseToPlay::on_actionJump_back_triggered()
 {
     int pos = player->position();
-//    std::cout<<pos<<std::endl;
     player->setPosition(pos-2000);
 }
 
@@ -123,7 +97,7 @@ void ChooseToPlay::on_actionmute_triggered()
 void ChooseToPlay::on_actionvolume_increase_triggered()
 {
     int volum = player->volume();
-    player->setVolume(volum+1);
+    player->setVolume(volum+10);
     volume_label->setText(QString::number( player->volume()));
 
 }
@@ -131,18 +105,25 @@ void ChooseToPlay::on_actionvolume_increase_triggered()
 void ChooseToPlay::on_actionvolume_dencrease_triggered()
 {
     int volum = player->volume();
-    player->setVolume(volum-1);
+    player->setVolume(volum-10);
     volume_label->setText(QString::number( player->volume()));
 
 }
 
 void ChooseToPlay::on_actionopen_triggered()
 {
-    QString Filename = QFileDialog::getOpenFileName(this,"Open a File","","Video File(*.mp4 , *.wmv)");
 
+    QString Filename = QFileDialog::getOpenFileName(this,"Open a File","","Video File(*.mp4 , *.wmv)");
+    playlist->addMedia(QMediaContent(QUrl::fromLocalFile(Filename)));
     player->setMedia(QUrl::fromLocalFile(Filename));
     player->setVideoOutput(videoWidget);
     this->setCentralWidget(videoWidget);
 
+
+    playlist->save(QUrl::fromLocalFile("C:/Users/admin/Desktop/write/playlist.m3u"),"m3u");
+
+    playlistClass->addToPlaylist(Filename);
+
     on_actionPlay_triggered();
 }
+

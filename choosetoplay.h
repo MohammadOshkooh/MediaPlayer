@@ -8,6 +8,8 @@
 #include <QSlider>
 #include <QLabel>
 #include <QMediaPlaylist>
+#include "playlistclass.h"
+#include "setting.h"
 
 namespace Ui {
 class ChooseToPlay;
@@ -18,12 +20,15 @@ class ChooseToPlay : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit ChooseToPlay(QWidget *parent = nullptr);
+    explicit ChooseToPlay(QWidget *parent = nullptr, QMediaPlayer *qmp = nullptr, QMediaPlaylist *qmpl = nullptr);
     QMediaPlayer *player;
     QVideoWidget *videoWidget;
     QSlider *slider;
     QLabel *volume_label;
     QMediaPlaylist *playlist;
+    PlaylistClass *playlistClass;
+    void set_playlist(PlaylistClass &playlist);
+    void set_setting(Setting &setting);
     ~ChooseToPlay();
 
 private slots:
@@ -44,6 +49,8 @@ private slots:
     void on_actionvolume_dencrease_triggered();
 
     void on_actionopen_triggered();
+
+
 
 private:
     Ui::ChooseToPlay *ui;

@@ -11,17 +11,21 @@ namespace Ui {
 class Playlist;
 }
 
-class Playlist : public QWidget
+class PlaylistClass : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit Playlist(QWidget *parent = nullptr);
+    explicit PlaylistClass(QMediaPlayer *qmp = nullptr, QMediaPlaylist *qmpl = nullptr);
     QMediaPlaylist *playlist;
+    QMediaPlayer *player;
+
     QStandardItemModel * model;
-    QTableView *table;
-    void loadPlayList(QMediaPlayer &player);
-    ~Playlist();
+    QTableView *table;  
+    void loadPlayList();
+    void addToPlaylist(QString fileName);
+    void setMediaPlayer(QMediaPlayer *qmp);
+    ~PlaylistClass();
 
 private:
     Ui::Playlist *ui;
