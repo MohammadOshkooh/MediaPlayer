@@ -2,6 +2,10 @@
 #define PLAYLIST_H
 
 #include <QMainWindow>
+#include <QMediaPlaylist>
+#include <QStandardItemModel>
+#include <QMediaPlayer>
+#include <QTableView>
 
 namespace Ui {
 class Playlist;
@@ -13,7 +17,10 @@ class Playlist : public QWidget
 
 public:
     explicit Playlist(QWidget *parent = nullptr);
-    Playlist *playlist;
+    QMediaPlaylist *playlist;
+    QStandardItemModel * model;
+    QTableView *table;
+    void loadPlayList(QMediaPlayer &player);
     ~Playlist();
 
 private:

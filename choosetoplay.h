@@ -7,6 +7,7 @@
 #include <QFileDialog>
 #include <QSlider>
 #include <QLabel>
+#include <QMediaPlaylist>
 
 namespace Ui {
 class ChooseToPlay;
@@ -22,6 +23,7 @@ public:
     QVideoWidget *videoWidget;
     QSlider *slider;
     QLabel *volume_label;
+    QMediaPlaylist *playlist;
     ~ChooseToPlay();
 
 private slots:

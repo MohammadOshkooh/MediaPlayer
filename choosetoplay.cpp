@@ -5,8 +5,25 @@
 #include <QFileDialog>
 #include <QProgressBar>
 #include <iostream>
+#include <QMediaPlaylist>
+#include "playlist.h"
 
 using namespace std;
+
+void Write(QString text) {
+    QString Filename = "C:/Users/admin/Desktop/write/a.txt";
+    QFile MyFile(Filename);
+    if(!MyFile.open(QFile::WriteOnly | QFile::Text))
+    {
+    qDebug() << "could not open file for reading";
+    return; }
+
+    QTextStream out(&MyFile);
+    out << text;
+    std::cout << "The text is written!";
+    MyFile.flush();
+    MyFile.close();
+}
 
 ChooseToPlay::ChooseToPlay(QWidget *parent) :
     QMainWindow(parent),
@@ -14,11 +31,22 @@ ChooseToPlay::ChooseToPlay(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    // open a file
-    QString Filename = QFileDialog::getOpenFileName(this,"Open a File","","Video File(*.mp4, *.wmv)");
-
     player = new QMediaPlayer(this);
     videoWidget = new QVideoWidget(this);
+    playlist = new QMediaPlaylist(player);
+
+    // open a file
+    QString Filename = QFileDialog::getOpenFileName(this,"Open a File","","Video File(*.mp4 , *.wmv)");
+
+  //  for(const QString & name: Filename){
+     playlist->addMedia(QMediaContent(QUrl::fromLocalFile(Filename)));
+   // }
+
+
+//     Write(Filename);
+
+
+    player->setPlaylist(playlist);
 
     player->setMedia(QUrl::fromLocalFile(Filename));
     player->setVideoOutput(videoWidget);
@@ -28,9 +56,6 @@ ChooseToPlay::ChooseToPlay(QWidget *parent) :
 //  create a slider
     slider = new QSlider(this);
     slider->setOrientation(Qt::Horizontal);
-
-//  slider->setSi
-
     ui->toolBar->addWidget(slider);
 
     connect(player,&QMediaPlayer::durationChanged,slider,&QSlider::setMaximum);
@@ -50,8 +75,6 @@ ChooseToPlay::ChooseToPlay(QWidget *parent) :
     volume_label->setText(volume);
     ui->toolBar->addWidget(volume_label);
 
-
-
     videoWidget->show();
 
     player->play();
@@ -64,6 +87,7 @@ ChooseToPlay::~ChooseToPlay()
 
 void ChooseToPlay::on_actionPlay_triggered()
 {
+
     player->play();
 }
 
@@ -114,7 +138,7 @@ void ChooseToPlay::on_actionvolume_dencrease_triggered()
 
 void ChooseToPlay::on_actionopen_triggered()
 {
-    QString Filename = QFileDialog::getOpenFileName(this,"Open a File","","Video File(*.mp4, *.wmv)");
+    QString Filename = QFileDialog::getOpenFileName(this,"Open a File","","Video File(*.mp4 , *.wmv)");
 
     player->setMedia(QUrl::fromLocalFile(Filename));
     player->setVideoOutput(videoWidget);

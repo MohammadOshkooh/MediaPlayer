@@ -145,8 +145,8 @@
   </action>
  </widget>
  <resources>
-  <include location="image.qrc"/>
   <include location="img.qrc"/>
+  <include location="image.qrc"/>
  </resources>
  <connections/>
 </ui>

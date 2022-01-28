@@ -20,6 +20,8 @@ Controller::Controller(QWidget *parent) :
     palette.setBrush(QPalette::Background, bkgnd);
     this->setPalette(palette);
 
+
+
 }
 
 Controller::~Controller()
