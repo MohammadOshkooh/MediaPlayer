@@ -25,12 +25,24 @@ PlayListClass::PlayListClass(QMediaPlayer *qmp , QMediaPlaylist *qmpl ) :
     ui(new Ui::PlayListClass)
 {
     ui->setupUi(this);
+
     player = qmp;
     playlist = qmpl;
     table = new QTableWidget();
     model = new QStandardItemModel();
 
     table->setColumnCount(5);
+    table->setColumnWidth(0,180);
+    table->setColumnWidth(1,60);
+    table->setColumnWidth(2,60);
+    table->setColumnWidth(3,60);
+    table->setColumnWidth(4,260);
+
+    table->setHorizontalHeaderItem(0, new QTableWidgetItem("Name"));
+    table->setHorizontalHeaderItem(1, new QTableWidgetItem("Size(MB)"));
+    table->setHorizontalHeaderItem(2, new QTableWidgetItem("Time"));
+    table->setHorizontalHeaderItem(3, new QTableWidgetItem("Format"));
+    table->setHorizontalHeaderItem(4, new QTableWidgetItem("Address"));
 //    ChooseToPlay *s = new ChooseToPlay(this,player,playlist);
     QLabel *label = new QLabel();
     label->setText("label");
@@ -41,6 +53,8 @@ PlayListClass::PlayListClass(QMediaPlayer *qmp , QMediaPlaylist *qmpl ) :
     connect(table,&QTableWidget::cellDoubleClicked,this,&PlayListClass::tableDoubleClicked);
 
    // connect(muteButton, &QAbstractButton::clicked, this, &MainWindow::muteClicked);
+
+
     showPlaylist();
     ui->verticalLayout->addWidget(table);
 
@@ -155,6 +169,14 @@ void PlayListClass::addToPlaylist(QString filename){
     }
 }
 
+void PlayListClass::on_actionadd_triggered()
+{
+    QString Filename = QFileDialog::getOpenFileName(this,"Open a File","","Video File(*.mp4 , *.wmv)");
+
+    addToPlaylist(Filename);
+
+    showPlaylist();
+}
 
 
 //             model->setHeaderData(0,Qt::Horizontal,QObject::tr("Name"));
@@ -167,3 +189,4 @@ void PlayListClass::addToPlaylist(QString filename){
 //             model->setData(model->index(0, 1), f.size()/(1024*1024.0));
 //             model->setData(model->index(0, 2), player->duration());
 //             model->setData(model->index(0, 3), fileInfo.completeSuffix());
+

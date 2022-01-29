@@ -30,6 +30,9 @@ public:
 
     ~PlayListClass();
 
+private slots:
+    void on_actionadd_triggered();
+
 private:
     Ui::PlayListClass *ui;
 };

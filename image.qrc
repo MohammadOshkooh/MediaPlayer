@@ -11,4 +11,8 @@
         <file>p.svg</file>
         <file>open.svg</file>
     </qresource>
+    <qresource prefix="/">
+        <file>main.jpg</file>
+        <file>p.jpg</file>
+    </qresource>
 </RCC>
