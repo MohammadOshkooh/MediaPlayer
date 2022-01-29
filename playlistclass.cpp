@@ -10,6 +10,8 @@
 #include <iostream>
 #include<QHBoxLayout>
 #include <QLabel>
+#include<QMessageBox>
+#include<QPushButton>
 
 using namespace std;
 
@@ -55,9 +57,31 @@ void PlayListClass::tableDoubleClicked(){
     for(int i=0; i<table->rowCount(); i++){
         if(table->item(i,0)->isSelected()){
             QString fileName = table->item(i,4)->data(0).toString();
-            ChooseToPlay *c = new ChooseToPlay(player,playlist);
-            c->playByGetFileName(fileName);
-            c->show();
+
+            QFile f(fileName);
+
+            if (f.exists()){
+                ChooseToPlay *c = new ChooseToPlay(player,playlist);
+                c->playByGetFileName(fileName);
+                c->show();
+            }
+
+            else {
+                QMessageBox msg;
+                msg.setText("not found this media\nDo you want to remove it from the playlist? ");
+                QPushButton button;
+                msg.setWindowTitle("error");
+
+                msg.addButton(QMessageBox::Yes);
+                msg.addButton(QMessageBox::No);
+
+                int result = msg.exec();
+
+                if(result == QMessageBox::Yes){
+                    table->removeRow(i);
+                }
+
+            }
         }
     }
 }
