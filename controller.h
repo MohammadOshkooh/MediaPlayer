@@ -18,7 +18,7 @@ public:
     explicit Controller(QWidget *parent = nullptr);
     ChooseToPlay *chooseToPlay;
     Setting *setting;
-    PlaylistClass *plClass;
+    PlayListClass *playlist_class;
 
     QMediaPlayer *player;
     QMediaPlaylist *playlist;

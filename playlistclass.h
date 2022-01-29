@@ -1,34 +1,37 @@
-#ifndef PLAYLIST_H
-#define PLAYLIST_H
+#ifndef PLAYLISTCLASS_H
+#define PLAYLISTCLASS_H
 
 #include <QMainWindow>
 #include <QMediaPlaylist>
 #include <QStandardItemModel>
 #include <QMediaPlayer>
 #include <QTableView>
+#include <QWidget>
+#include <QTableWidget>
 
 namespace Ui {
-class Playlist;
+class PlayListClass;
 }
 
-class PlaylistClass : public QWidget
+class PlayListClass : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit PlaylistClass(QMediaPlayer *qmp = nullptr, QMediaPlaylist *qmpl = nullptr);
+    explicit PlayListClass(QMediaPlayer *qmp = nullptr, QMediaPlaylist *qmpl = nullptr);
+
+    QTableWidget *table;
     QMediaPlaylist *playlist;
     QMediaPlayer *player;
-
     QStandardItemModel * model;
-    QTableView *table;  
-    void loadPlayList();
+    void showPlaylist();
     void addToPlaylist(QString fileName);
-    void setMediaPlayer(QMediaPlayer *qmp);
-    ~PlaylistClass();
+    void tableDoubleClicked();
+
+    ~PlayListClass();
 
 private:
-    Ui::Playlist *ui;
+    Ui::PlayListClass *ui;
 };
 
-#endif // PLAYLIST_H
+#endif // PLAYLISTCLASS_H

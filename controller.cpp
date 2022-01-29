@@ -2,7 +2,7 @@
 #include "ui_controller.h"
 #include<QBrush>
 #include<QPixmap>
-
+#include<iostream>
 #include "choosetoplay.h"
 #include "playlistclass.h"
 #include "setting.h"
@@ -24,7 +24,7 @@ Controller::Controller(QWidget *parent) :
     playlist = new QMediaPlaylist();
 
     chooseToPlay = new ChooseToPlay(this,player,playlist);
-    plClass = new PlaylistClass(player,playlist);
+    playlist_class = new PlayListClass(player, playlist);
     setting = new Setting();
 
 
@@ -42,10 +42,14 @@ void Controller::on_pushButton_chooseToPlay_clicked()
 
 void Controller::on_pushButton_setting_clicked()
 {
+//    std::cout<<"show setting\n";
     setting->show();
+
 }
 
 void Controller::on_pushButton_playlist_clicked()
 {
-    plClass->show();
+//    std::cout<<"show playlist\n";
+    playlist_class->show();
+    
 }

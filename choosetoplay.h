@@ -21,17 +21,19 @@ class ChooseToPlay : public QMainWindow
 
 public:
     explicit ChooseToPlay(QWidget *parent = nullptr, QMediaPlayer *qmp = nullptr, QMediaPlaylist *qmpl = nullptr);
+    ChooseToPlay(QMediaPlayer *qmp, QMediaPlaylist *qmpl);
     QMediaPlayer *player;
     QVideoWidget *videoWidget;
     QSlider *slider;
     QLabel *volume_label;
     QMediaPlaylist *playlist;
-    PlaylistClass *playlistClass;
-    void set_playlist(PlaylistClass &playlist);
+    PlayListClass *playlistClass;
+    void set_playlist(PlayListClass &playlist);
     void set_setting(Setting &setting);
-    ~ChooseToPlay();
+    void playByGetFileName(QString fileName);
+    ~ChooseToPlay();    
 
-private slots:
+public slots:
     void on_actionPlay_triggered();
 
     void on_actionPause_triggered();
@@ -54,6 +56,8 @@ private slots:
 
 private:
     Ui::ChooseToPlay *ui;
+
+
 };
 
 #endif // CHOOSETOPLAY_H
