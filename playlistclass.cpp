@@ -20,7 +20,6 @@ PlayListClass::PlayListClass(QMediaPlayer *qmp , QMediaPlaylist *qmpl ) :
     ui(new Ui::PlayListClass)
 {
     ui->setupUi(this);
-
     player = qmp;
     playlist = qmpl;
     table = new QTableWidget();
@@ -38,7 +37,7 @@ PlayListClass::PlayListClass(QMediaPlayer *qmp , QMediaPlaylist *qmpl ) :
     table->setHorizontalHeaderItem(2, new QTableWidgetItem("Time"));
     table->setHorizontalHeaderItem(3, new QTableWidgetItem("Format"));
     table->setHorizontalHeaderItem(4, new QTableWidgetItem("Address"));
-//    ChooseToPlay *s = new ChooseToPlay(this,player,playlist);
+
     QLabel *label = new QLabel();
     label->setText("label");
 
@@ -47,9 +46,6 @@ PlayListClass::PlayListClass(QMediaPlayer *qmp , QMediaPlaylist *qmpl ) :
     // connect for play a file to playlist
     connect(table,&QTableWidget::cellDoubleClicked,table,&QTableWidget::selectRow);
     connect(table,&QTableWidget::cellDoubleClicked,this,&PlayListClass::tableDoubleClicked);
-
-
-   // connect(muteButton, &QAbstractButton::clicked, this, &MainWindow::muteClicked);
 
 
     showPlaylist();
@@ -65,6 +61,7 @@ PlayListClass::~PlayListClass()
 
 
 void PlayListClass::tableDoubleClicked(){
+    qDebug()<<"tableDoubleClicked";
     for(int i=0; i<table->rowCount(); i++){
         if(table->item(i,0)->isSelected()){
             QString fileName = table->item(i,4)->data(0).toString();
@@ -78,31 +75,66 @@ void PlayListClass::tableDoubleClicked(){
             }
 
             else {
-                QMessageBox msg;
-                msg.setText("not found this media\nDo you want to remove it from the playlist? ");
-                QPushButton button;
-                msg.setWindowTitle("error");
-
-                msg.addButton(QMessageBox::Yes);
-                msg.addButton(QMessageBox::No);
-
-                int result = msg.exec();
-
-                if(result == QMessageBox::Yes){
-                    table->removeRow(i);
-                }
-
+                remove_file(table->item(i,4)->data(0).toString());
             }
         }
     }
 }
 
 
-void PlayListClass::remove_file(){
+void PlayListClass::remove_file(QString fileName){
+     qDebug()<<"remove_file";
 
+    QMessageBox msg;
+    msg.setText("Do you want to remove it from the playlist? ");
+    QPushButton button;
+    msg.setWindowTitle("error");
+
+    msg.addButton(QMessageBox::Yes);
+    msg.addButton(QMessageBox::No);
+
+    int result = msg.exec();
+
+    if(result == QMessageBox::Yes){
+
+        QString fileAddress = "C:/Users/admin/Desktop/write/a.txt";
+        QString fileAddress2 = "C:/Users/admin/Desktop/write/a2.txt";
+        QFile MyFile(fileAddress);
+        QFile replaceFile(fileAddress2);
+
+        if(MyFile.open(QIODevice::ReadWrite) && replaceFile.open(QIODevice::ReadWrite)){
+            QTextStream input(&MyFile);
+            QTextStream write(&replaceFile);
+            while (!input.atEnd()) {
+                QString line = input.readLine();
+                if(line != fileName){
+                    write <<line;
+                    write <<"\n";
+                }
+            }
+        }
+        MyFile.remove();
+        replaceFile.copy(fileAddress);
+        replaceFile.remove();
+        MyFile.close();
+        replaceFile.close();
+        updatePlayListView();
+    }
 }
 
+void PlayListClass::removeClickedMethod(){
+    qDebug()<<"removeClickedMethod";
+     for(int i=0; i<table->rowCount(); i++){
+        if(table->item(i,0)->isSelected()){
+           QString fileName = table->item(i,4)->data(0).toString();
+           remove_file(fileName);
+         }
+     }
+}
+
+
 void PlayListClass::showPlaylist() {
+    qDebug()<<"showPlaylist";
     QString fileAddress = "C:/Users/admin/Desktop/write/a.txt";
     QFile MyFile(fileAddress);
 
@@ -145,9 +177,8 @@ void PlayListClass::showPlaylist() {
                 table->item(table->rowCount()-1, 2)->setBackground(Qt::red);
                 table->item(table->rowCount()-1, 3)->setBackground(Qt::red);
                 table->item(table->rowCount()-1, 4)->setBackground(Qt::red);
-              //  table->item(table->rowCount()-1, 4)->setTextColor(Qt::red);
-             }
 
+             }
         }
     }
 
@@ -156,6 +187,7 @@ void PlayListClass::showPlaylist() {
 
 
 bool PlayListClass::fileIsExist(QString fileName){
+    qDebug()<<"fileIsExist";
     QString fileAddress = "C:/Users/admin/Desktop/write/a.txt";
     QFile MyFile(fileAddress);
 
@@ -171,11 +203,11 @@ bool PlayListClass::fileIsExist(QString fileName){
 }
 
 void PlayListClass::addToPlaylist(QString filename){
+    qDebug()<<"addToPlaylist";
 
-    if(!fileIsExist(filename)){
+    if(!fileIsExist(filename) && filename.length()!=0){
         QString fileAddress = "C:/Users/admin/Desktop/write/a.txt";
         QFile MyFile(fileAddress);
-
         if(MyFile.open(QIODevice::Append)){
 
         QTextStream write(&MyFile);
@@ -184,47 +216,65 @@ void PlayListClass::addToPlaylist(QString filename){
         MyFile.flush();
         MyFile.close();
         }
+         updatePlayListView();
     }
-    else{
+    else if(filename.length()!=0){
         QMessageBox msg;
         msg.setText("The file already exists in the list ");
         msg.exec();
     }
+
 }
 
 void PlayListClass::on_actionadd_triggered()
 {
-    QString Filename = QFileDialog::getOpenFileName(this,"Open a File","","Video File(*.mp4 , *.wmv)");
+    qDebug()<<"on_actionadd_triggered";
+    QString filename = QFileDialog::getOpenFileName(this,"Open a File","","Video File(*.mp4 , *.wmv)");
+    if(filename.length()!=0)
+        addToPlaylist(filename);
+}
 
-    addToPlaylist(Filename);
-
+void PlayListClass::updatePlayListView(){
+     qDebug()<<"updatePlayListView"<<endl;
+    cout<<"row:"<<table->rowCount()<<endl;
+    int count = table->rowCount();
+    for(int i=0; i<count; i++)
+        table->removeRow(0);
     showPlaylist();
 }
 
-
-
 void PlayListClass::on_actionremove_to_playlist_triggered()
 {
+    qDebug()<<"on_actionremove_to_playlist_triggered";
+    QMessageBox msg;
+    QMessageBox msg2;
+    msg.setWindowTitle("Remove mode");
 
-    ui->statusBar->showMessage("Please select a file to remove from the playlist");
+    msg.addButton(QMessageBox::Yes);
+    msg.addButton(QMessageBox::No);
 
-    connect(table,&QTableWidget::cellClicked,table,&QTableWidget::selectRow);
-    connect(table,&QTableWidget::cellClicked,this,&PlayListClass::tableDoubleClicked);
+    if(removeMode == false){
+        msg.setText("Do you want to enable Remove mode?");
+        int result = msg.exec();
+        if(result == QMessageBox::Yes){
+            msg2.setText("Remove mode : on");
+            msg2.exec();
+            removeMode=true;
+            connect(table,&QTableWidget::cellClicked,table,&QTableWidget::selectRow);
+            connect(table,&QTableWidget::cellClicked,this,&PlayListClass::removeClickedMethod);
+        }
+    }
+    else{
+        msg.setText("Do you want to disable Remove mode?");
+        int result = msg.exec();
+        if(result == QMessageBox::Yes){
+            msg2.setText("Remove mode : off");
+            msg2.exec();
+            removeMode = false;
+            disconnect(table,&QTableWidget::cellClicked,table,&QTableWidget::selectRow);
+            disconnect(table,&QTableWidget::cellClicked,this,&PlayListClass::removeClickedMethod);
+        }
+    }
+
 
 }
-
-//             model->setHeaderData(0,Qt::Horizontal,QObject::tr("Name"));
-//             model->setHeaderData(1,Qt::Horizontal,QObject::tr("Size(MB)"));
-//             model->setHeaderData(2,Qt::Horizontal,QObject::tr("Time"));
-//             model->setHeaderData(3,Qt::Horizontal,QObject::tr("Format "));
-
-//             model->insertRow(0);
-//             model->setData(model->index(0, 0), fileInfo.fileName());
-//             model->setData(model->index(0, 1), f.size()/(1024*1024.0));
-//             model->setData(model->index(0, 2), player->duration());
-//             model->setData(model->index(0, 3), fileInfo.completeSuffix());
-
-
-
-
-//    ui->toolBar->setToolButtonStyle( Qt::ToolButtonTextUnderIcon );

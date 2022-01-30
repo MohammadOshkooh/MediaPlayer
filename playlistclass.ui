@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>683</width>
-    <height>419</height>
+    <width>682</width>
+    <height>546</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -38,7 +38,6 @@
    <addaction name="actionadd"/>
    <addaction name="actionremove_to_playlist"/>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
   <action name="actionadd">
    <property name="icon">
     <iconset resource="image.qrc">

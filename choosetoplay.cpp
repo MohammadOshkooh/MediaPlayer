@@ -165,7 +165,7 @@ void ChooseToPlay::on_actionopen_triggered()
     playlist->save(QUrl::fromLocalFile("C:/Users/admin/Desktop/write/playlist.m3u"),"m3u");
 
   //  if(playlistClass->fileIsExist(fileName) == 0)
-    playlistClass->addToPlaylist(fileName);
+//    playlistClass->addToPlaylist(fileName);
 
     on_actionPlay_triggered();
 }
