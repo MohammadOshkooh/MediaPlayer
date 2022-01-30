@@ -15,11 +15,6 @@
 
 using namespace std;
 
-void d(){
-    std::cout<<"playlist run\n";
-}
-
-
 PlayListClass::PlayListClass(QMediaPlayer *qmp , QMediaPlaylist *qmpl ) :
  //   QMainWindow(parent),
     ui(new Ui::PlayListClass)
@@ -49,8 +44,10 @@ PlayListClass::PlayListClass(QMediaPlayer *qmp , QMediaPlaylist *qmpl ) :
 
     table->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
+    // connect for play a file to playlist
     connect(table,&QTableWidget::cellDoubleClicked,table,&QTableWidget::selectRow);
     connect(table,&QTableWidget::cellDoubleClicked,this,&PlayListClass::tableDoubleClicked);
+
 
    // connect(muteButton, &QAbstractButton::clicked, this, &MainWindow::muteClicked);
 
@@ -101,9 +98,13 @@ void PlayListClass::tableDoubleClicked(){
 }
 
 
+void PlayListClass::remove_file(){
+
+}
+
 void PlayListClass::showPlaylist() {
-    QString Filename = "C:/Users/admin/Desktop/write/a.txt";
-    QFile MyFile(Filename);
+    QString fileAddress = "C:/Users/admin/Desktop/write/a.txt";
+    QFile MyFile(fileAddress);
 
 
     if(MyFile.open(QIODevice::ReadWrite))
@@ -154,10 +155,26 @@ void PlayListClass::showPlaylist() {
 }
 
 
+bool PlayListClass::fileIsExist(QString fileName){
+    QString fileAddress = "C:/Users/admin/Desktop/write/a.txt";
+    QFile MyFile(fileAddress);
+
+    if(MyFile.open(QIODevice::ReadWrite)){
+        QTextStream input(&MyFile);
+        while (!input.atEnd()) {
+            QString line = input.readLine();
+            if(line == fileName)
+                return 1;
+        }
+    }
+    return 0;
+}
+
 void PlayListClass::addToPlaylist(QString filename){
 
-        QString Filename = "C:/Users/admin/Desktop/write/a.txt";
-        QFile MyFile(Filename);
+    if(!fileIsExist(filename)){
+        QString fileAddress = "C:/Users/admin/Desktop/write/a.txt";
+        QFile MyFile(fileAddress);
 
         if(MyFile.open(QIODevice::Append)){
 
@@ -166,6 +183,12 @@ void PlayListClass::addToPlaylist(QString filename){
         write <<"\n";
         MyFile.flush();
         MyFile.close();
+        }
+    }
+    else{
+        QMessageBox msg;
+        msg.setText("The file already exists in the list ");
+        msg.exec();
     }
 }
 
@@ -179,6 +202,17 @@ void PlayListClass::on_actionadd_triggered()
 }
 
 
+
+void PlayListClass::on_actionremove_to_playlist_triggered()
+{
+
+    ui->statusBar->showMessage("Please select a file to remove from the playlist");
+
+    connect(table,&QTableWidget::cellClicked,table,&QTableWidget::selectRow);
+    connect(table,&QTableWidget::cellClicked,this,&PlayListClass::tableDoubleClicked);
+
+}
+
 //             model->setHeaderData(0,Qt::Horizontal,QObject::tr("Name"));
 //             model->setHeaderData(1,Qt::Horizontal,QObject::tr("Size(MB)"));
 //             model->setHeaderData(2,Qt::Horizontal,QObject::tr("Time"));
@@ -190,3 +224,7 @@ void PlayListClass::on_actionadd_triggered()
 //             model->setData(model->index(0, 2), player->duration());
 //             model->setData(model->index(0, 3), fileInfo.completeSuffix());
 
+
+
+
+//    ui->toolBar->setToolButtonStyle( Qt::ToolButtonTextUnderIcon );

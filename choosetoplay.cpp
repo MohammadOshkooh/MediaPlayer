@@ -155,16 +155,17 @@ void ChooseToPlay::on_actionvolume_dencrease_triggered()
 void ChooseToPlay::on_actionopen_triggered()
 {
     player->stop();
-    QString Filename = QFileDialog::getOpenFileName(this,"Open a File","","Video File(*.mp4 , *.wmv)");
-    playlist->addMedia(QMediaContent(QUrl::fromLocalFile(Filename)));
-    player->setMedia(QUrl::fromLocalFile(Filename));
+    QString fileName = QFileDialog::getOpenFileName(this,"Open a File","","Video File(*.mp4 , *.wmv)");
+    playlist->addMedia(QMediaContent(QUrl::fromLocalFile(fileName)));
+    player->setMedia(QUrl::fromLocalFile(fileName));
     player->setVideoOutput(videoWidget);
     this->setCentralWidget(videoWidget);
 
 
     playlist->save(QUrl::fromLocalFile("C:/Users/admin/Desktop/write/playlist.m3u"),"m3u");
 
-    playlistClass->addToPlaylist(Filename);
+  //  if(playlistClass->fileIsExist(fileName) == 0)
+    playlistClass->addToPlaylist(fileName);
 
     on_actionPlay_triggered();
 }

@@ -36,7 +36,9 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionadd"/>
+   <addaction name="actionremove_to_playlist"/>
   </widget>
+  <widget class="QStatusBar" name="statusBar"/>
   <action name="actionadd">
    <property name="icon">
     <iconset resource="image.qrc">
@@ -44,6 +46,15 @@
    </property>
    <property name="text">
     <string>add</string>
+   </property>
+  </action>
+  <action name="actionremove_to_playlist">
+   <property name="icon">
+    <iconset resource="image.qrc">
+     <normaloff>:/Nishad2m8-Hologram-Recycle-empty.ico</normaloff>:/Nishad2m8-Hologram-Recycle-empty.ico</iconset>
+   </property>
+   <property name="text">
+    <string>remove to playlist</string>
    </property>
   </action>
  </widget>

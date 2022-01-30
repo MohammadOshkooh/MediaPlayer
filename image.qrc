@@ -14,5 +14,6 @@
     <qresource prefix="/">
         <file>main.jpg</file>
         <file>p.jpg</file>
+        <file>Nishad2m8-Hologram-Recycle-empty.ico</file>
     </qresource>
 </RCC>

@@ -25,13 +25,16 @@ public:
     QMediaPlayer *player;
     QStandardItemModel * model;
     void showPlaylist();
+    void remove_file();
     void addToPlaylist(QString fileName);
     void tableDoubleClicked();
-
+    bool fileIsExist(QString fileName);
     ~PlayListClass();
 
 private slots:
     void on_actionadd_triggered();
+
+    void on_actionremove_to_playlist_triggered();
 
 private:
     Ui::PlayListClass *ui;
