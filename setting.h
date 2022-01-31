@@ -1,13 +1,13 @@
 #ifndef SETTING_H
 #define SETTING_H
 
-#include <QWidget>
+#include <QMainWindow>
 
 namespace Ui {
 class Setting;
 }
 
-class Setting : public QWidget
+class Setting : public QMainWindow
 {
     Q_OBJECT
 
@@ -31,6 +31,8 @@ private slots:
     void on_jumpTimeUp_clicked();
 
     void on_clearPlaylist_clicked();
+
+    void on_actionBack_triggered();
 
 private:
     Ui::Setting *ui;

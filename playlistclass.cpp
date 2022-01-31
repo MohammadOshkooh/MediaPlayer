@@ -1,6 +1,6 @@
 #include "playlistclass.h"
 #include "ui_playlistclass.h"
-
+#include"controller.h"
 #include "choosetoplay.h"
 #include <QStringListModel>
 #include <QTableView>
@@ -362,4 +362,11 @@ void PlayListClass::clearPlaylist(){
             MyFile.close();
     }
 
+}
+
+void PlayListClass::on_actionBack_triggered()
+{
+    this->close();
+    Controller *c = new Controller();
+    c->show();
 }

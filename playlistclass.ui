@@ -35,6 +35,7 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionBack"/>
    <addaction name="actionadd"/>
    <addaction name="actionremove_to_playlist"/>
   </widget>
@@ -54,6 +55,15 @@
    </property>
    <property name="text">
     <string>remove to playlist</string>
+   </property>
+  </action>
+  <action name="actionBack">
+   <property name="icon">
+    <iconset resource="image.qrc">
+     <normaloff>:/back.png</normaloff>:/back.png</iconset>
+   </property>
+   <property name="text">
+    <string>Back</string>
    </property>
   </action>
  </widget>

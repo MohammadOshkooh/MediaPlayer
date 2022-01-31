@@ -37,19 +37,20 @@ Controller::~Controller()
 
 void Controller::on_pushButton_chooseToPlay_clicked()
 {
+    this->close();
     chooseToPlay->show();
 }
 
 void Controller::on_pushButton_setting_clicked()
 {
-//    std::cout<<"show setting\n";
+    this->close();
     setting->show();
 
 }
 
 void Controller::on_pushButton_playlist_clicked()
 {
-//    std::cout<<"show playlist\n";
+    this->close();
     playlist_class->show();
     
 }

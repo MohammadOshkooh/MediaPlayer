@@ -62,6 +62,8 @@ private slots:
 
     void on_actionprevious_video_triggered();
 
+    void on_actionBack_triggered();
+
 private:
     Ui::ChooseToPlay *ui;
 

@@ -1,16 +1,16 @@
 #include "setting.h"
 #include "ui_setting.h"
-#include <iostream>
+#include<controller.h>
+#include<playlistclass.h>
 #include<QBoxLayout>
 #include<QPushButton>
 #include<QFile>
 #include<QTextStream>
-#include<playlistclass.h>
 #include<QMessageBox>
-#include<QDebug>
+
 
 Setting::Setting(QWidget *parent) :
-    QWidget(parent),
+    QMainWindow(parent),
     ui(new Ui::Setting)
 {
 
@@ -116,9 +116,16 @@ void Setting::on_clearPlaylist_clicked()
     int result = msg.exec();
     if(result == QMessageBox::Yes){
         PlayListClass *p = new PlayListClass(4);
-        qDebug()<<"1";
         p->clearPlaylist();
-        msg.setText("The playlist was cleared successfully");
-        msg.exec();
+        QMessageBox msg2;
+        msg2.setText("The playlist was cleared successfully");
+        msg2.exec();
     }
+}
+
+void Setting::on_actionBack_triggered()
+{
+    this->close();
+    Controller *c = new Controller();
+    c->show();
 }

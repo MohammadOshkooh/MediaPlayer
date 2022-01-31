@@ -51,6 +51,8 @@ private slots:
 
     void on_actionremove_to_playlist_triggered();
 
+    void on_actionBack_triggered();
+
 private:
     Ui::PlayListClass *ui;
 };

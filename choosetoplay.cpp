@@ -7,6 +7,7 @@
 #include <iostream>
 #include <QMediaPlaylist>
 #include "playlistclass.h"
+#include "controller.h"
 
 using namespace std;
 
@@ -21,7 +22,7 @@ ChooseToPlay::ChooseToPlay(QMediaPlayer *qmp, QMediaPlaylist *qmpl) :
     videoWidget = new QVideoWidget(this);
     playlist = qmpl;
     player->setPlaylist(playlist);
- setting = new Setting;
+    setting = new Setting;
 
     player->setVideoOutput(videoWidget);
     this->setCentralWidget(videoWidget);
@@ -216,4 +217,11 @@ QString ChooseToPlay::fileNameBeingPlayed(){
     QString fileName = player->currentMedia().canonicalUrl().toString();
     fileName.remove(0,8); // for example : "file:///C:/Users/admin/Videos/s.mp4"
     return fileName;
+}
+
+void ChooseToPlay::on_actionBack_triggered()
+{
+    this->close();
+    Controller *c = new Controller();
+    c->show();
 }
