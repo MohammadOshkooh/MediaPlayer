@@ -21,6 +21,7 @@ ChooseToPlay::ChooseToPlay(QMediaPlayer *qmp, QMediaPlaylist *qmpl) :
     videoWidget = new QVideoWidget(this);
     playlist = qmpl;
     player->setPlaylist(playlist);
+ setting = new Setting;
 
     player->setVideoOutput(videoWidget);
     this->setCentralWidget(videoWidget);
@@ -51,6 +52,8 @@ ChooseToPlay::ChooseToPlay(QMediaPlayer *qmp, QMediaPlaylist *qmpl) :
     volume_label->setText(volume);
     ui->toolBar->addWidget(volume_label);
 
+    player->setVolume(setting->read("volume"));
+
     videoWidget->show();
 
     player->play();
@@ -68,6 +71,7 @@ ChooseToPlay::ChooseToPlay(QWidget *parent, QMediaPlayer *qmp, QMediaPlaylist *q
     videoWidget = new QVideoWidget(this);
     playlist = qmpl;
     playlistClass = new PlayListClass(player, playlist);
+    setting = new Setting;
 
     player->setPlaylist(playlist);
 
@@ -98,6 +102,8 @@ ChooseToPlay::ChooseToPlay(QWidget *parent, QMediaPlayer *qmp, QMediaPlaylist *q
     volume_label->setText(volume);
     ui->toolBar->addWidget(volume_label);
 
+    player->setVolume(setting->read("volume"));
+
     videoWidget->show();
 
     player->play();
@@ -110,6 +116,7 @@ ChooseToPlay::~ChooseToPlay()
 
 void ChooseToPlay::on_actionPlay_triggered()
 {
+
     player->play();
 }
 
@@ -126,13 +133,13 @@ void ChooseToPlay::on_actionaAtFirst_triggered()
 void ChooseToPlay::on_actionJump_back_triggered()
 {
     int pos = player->position();
-    player->setPosition(pos-2000);
+    player->setPosition(pos-setting->read("jumpTime")*1000);
 }
 
 void ChooseToPlay::on_actionJump_forward_triggered()
 {
     int pos = player->position();
-    player->setPosition(pos+2000);
+    player->setPosition(pos+setting->read("jumpTime")*1000);
 }
 
 void ChooseToPlay::on_actionmute_triggered()
@@ -165,7 +172,6 @@ void ChooseToPlay::on_actionopen_triggered()
     player->setMedia(QUrl::fromLocalFile(fileName));
     player->setVideoOutput(videoWidget);
     this->setCentralWidget(videoWidget);
-
 
     playlist->save(QUrl::fromLocalFile("C:/Users/admin/Desktop/write/playlist.m3u"),"m3u");
 

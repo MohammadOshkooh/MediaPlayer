@@ -24,6 +24,7 @@ public:
     ChooseToPlay(QMediaPlayer *qmp, QMediaPlaylist *qmpl);
     QMediaPlayer *player;
     QVideoWidget *videoWidget;
+    Setting *setting ;
     QSlider *slider;
     QLabel *volume_label;
     QMediaPlaylist *playlist;
