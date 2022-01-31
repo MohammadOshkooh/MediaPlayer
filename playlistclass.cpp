@@ -276,5 +276,74 @@ void PlayListClass::on_actionremove_to_playlist_triggered()
         }
     }
 
+}
 
+QString PlayListClass::nextVideo(QString fileName){
+
+    int numberFile = getNumberFile(fileName);
+
+    if (numberFile < getLineCount())
+        return getFileNameNumberI(numberFile+1);
+
+    else
+        return getFileNameNumberI(1);
+
+}
+
+QString PlayListClass::previousVideo(QString fileName){
+    int numberFile = getNumberFile(fileName);
+
+    if (numberFile == 1)
+        return getFileNameNumberI(getLineCount());
+
+    else
+        return getFileNameNumberI(numberFile-1);
+}
+
+
+QString PlayListClass::getFileNameNumberI(int i){
+    QString fileAddress = "C:/Users/admin/Desktop/write/a.txt";
+    QFile MyFile(fileAddress);
+
+    QString fileName;
+
+    if(MyFile.open(QIODevice::ReadWrite)){
+        QTextStream input(&MyFile);
+        for (int n=0; n<i&&!input.atEnd(); n++)
+            fileName = input.readLine();
+
+        return fileName;
+        }
+}
+
+int PlayListClass::getNumberFile(QString fileName){
+    QString fileAddress = "C:/Users/admin/Desktop/write/a.txt";
+    QFile MyFile(fileAddress);
+    int number=0;
+
+    if(MyFile.open(QIODevice::ReadWrite)){
+        QTextStream input(&MyFile);
+        while(!input.atEnd()){
+               QString line = input.readLine();
+               number++;
+               if(line == fileName)
+                   return number;
+        }
+    }
+}
+
+int PlayListClass::getLineCount(){
+    QString fileAddress = "C:/Users/admin/Desktop/write/a.txt";
+    QFile MyFile(fileAddress);
+
+    int count=0;
+
+    if(MyFile.open(QIODevice::ReadWrite)){
+        QTextStream input(&MyFile);
+        while(!input.atEnd()){
+               input.readLine();
+               count++;
+        }
+        return count;
+    }
 }

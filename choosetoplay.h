@@ -54,6 +54,11 @@ public slots:
 
 
 
+private slots:
+    void on_actionnext_video_triggered();
+
+    void on_actionprevious_video_triggered();
+
 private:
     Ui::ChooseToPlay *ui;
 

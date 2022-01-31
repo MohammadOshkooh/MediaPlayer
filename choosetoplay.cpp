@@ -164,8 +164,7 @@ void ChooseToPlay::on_actionopen_triggered()
 
     playlist->save(QUrl::fromLocalFile("C:/Users/admin/Desktop/write/playlist.m3u"),"m3u");
 
-  //  if(playlistClass->fileIsExist(fileName) == 0)
-//    playlistClass->addToPlaylist(fileName);
+    playlistClass->addToPlaylist(fileName);
 
     on_actionPlay_triggered();
 }
@@ -175,3 +174,26 @@ void ChooseToPlay::playByGetFileName(QString fileName){
     on_actionPlay_triggered();
 }
 
+
+void ChooseToPlay::on_actionnext_video_triggered()
+{
+
+    QString fileName = player->currentMedia().canonicalUrl().toString();
+    fileName.remove(0,8); // for example : "file:///C:/Users/admin/Videos/s.mp4"
+
+    QString newFileName = playlistClass->nextVideo(fileName);
+    qDebug()<<"new file name : "<<fileName;
+    player->setMedia(QUrl::fromLocalFile(newFileName));
+    player->play();
+}
+
+void ChooseToPlay::on_actionprevious_video_triggered()
+{
+    QString fileName = player->currentMedia().canonicalUrl().toString();
+    fileName.remove(0,8); // for example : "file:///C:/Users/admin/Videos/s.mp4"
+
+    QString newFileName = playlistClass->previousVideo(fileName);
+
+    player->setMedia(QUrl::fromLocalFile(newFileName));
+    player->play();
+}

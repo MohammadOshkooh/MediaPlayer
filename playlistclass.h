@@ -19,18 +19,30 @@ class PlayListClass : public QMainWindow
 
 public:
     explicit PlayListClass(QMediaPlayer *qmp = nullptr, QMediaPlaylist *qmpl = nullptr);
+
     bool removeMode=false;
+
     QTableWidget *table;
     QMediaPlaylist *playlist;
     QMediaPlayer *player;
     QStandardItemModel * model;
+
     void updatePlayListView();
     void showPlaylist();
     void remove_file(QString fileName);
     void removeClickedMethod();
     void addToPlaylist(QString fileName);
     void tableDoubleClicked();
+
+    QString nextVideo(QString fileName);
+    QString previousVideo(QString fileName);
+    QString getFileNameNumberI(int i);
+
     bool fileIsExist(QString fileName);
+
+    int getLineCount();
+    int getNumberFile(QString fileName);
+
     ~PlayListClass();
 
 private slots:
