@@ -17,5 +17,10 @@
         <file>Nishad2m8-Hologram-Recycle-empty.ico</file>
         <file>Gakuseisean-Radium-Neue-Recycle-Bin-Empty.ico</file>
         <file>back.png</file>
+        <file>close.svg</file>
+        <file>max.png</file>
+        <file>min.png</file>
+        <file>icons8-macos-close-90.png</file>
+        <file>full_screen_icon_155355.png</file>
     </qresource>
 </RCC>

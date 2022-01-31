@@ -31,7 +31,7 @@ public:
     void showPlaylist();
     void remove_file(QString fileName);
     void removeClickedMethod();
-    void addToPlaylist(QString fileName);
+    void addToPlaylist(QString fileName, int mode);
     void tableDoubleClicked();
     void clearPlaylist();
 

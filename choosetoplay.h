@@ -64,6 +64,14 @@ private slots:
 
     void on_actionBack_triggered();
 
+    void on_actionclose_triggered();
+
+    void on_actionmax_triggered();
+
+    void on_actionmin_triggered();
+
+    void on_actionFull_triggered();
+
 private:
     Ui::ChooseToPlay *ui;
 

@@ -206,7 +206,7 @@ bool PlayListClass::fileIsExist(QString fileName){
     return 0;
 }
 
-void PlayListClass::addToPlaylist(QString filename){
+void PlayListClass::addToPlaylist(QString filename, int mode){
     qDebug()<<"addToPlaylist";
 
     if(!fileIsExist(filename) && filename.length()!=0){
@@ -222,7 +222,7 @@ void PlayListClass::addToPlaylist(QString filename){
         }
          updatePlayListView();
     }
-    else if(filename.length()!=0){
+    else if(filename.length()!=0 && mode==0){
         QMessageBox msg;
         msg.setText("The file already exists in the list ");
         msg.exec();
@@ -235,7 +235,7 @@ void PlayListClass::on_actionadd_triggered()
     qDebug()<<"on_actionadd_triggered";
     QString filename = QFileDialog::getOpenFileName(this,"Open a File","","Video File(*.mp4 , *.wmv)");
     if(filename.length()!=0)
-        addToPlaylist(filename);
+        addToPlaylist(filename,0);
 }
 
 void PlayListClass::updatePlayListView(){

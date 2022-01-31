@@ -176,7 +176,7 @@ void ChooseToPlay::on_actionopen_triggered()
 
     playlist->save(QUrl::fromLocalFile("C:/Users/admin/Desktop/write/playlist.m3u"),"m3u");
 
-    playlistClass->addToPlaylist(fileName);
+    playlistClass->addToPlaylist(fileName,1);
 
     on_actionPlay_triggered();
 }
@@ -221,7 +221,30 @@ QString ChooseToPlay::fileNameBeingPlayed(){
 
 void ChooseToPlay::on_actionBack_triggered()
 {
+    player->stop();
     this->close();
     Controller *c = new Controller();
     c->show();
+}
+
+void ChooseToPlay::on_actionclose_triggered()
+{
+    player->stop();
+    this->close();
+}
+
+void ChooseToPlay::on_actionmax_triggered()
+{
+    this->showMaximized();
+}
+
+void ChooseToPlay::on_actionmin_triggered()
+{
+    //this->setWindowState(Qt::WindowMinimized);
+    this->showMinimized();
+}
+
+void ChooseToPlay::on_actionFull_triggered()
+{
+    this->setWindowState(Qt::WindowFullScreen);
 }
