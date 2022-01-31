@@ -72,6 +72,34 @@
    <addaction name="actionFull"/>
    <addaction name="actionclose"/>
   </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>848</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuoption">
+    <property name="title">
+     <string>option</string>
+    </property>
+    <widget class="QMenu" name="menuspeed">
+     <property name="title">
+      <string>speed</string>
+     </property>
+     <addaction name="actionRate0_5"/>
+     <addaction name="actionRate0_75"/>
+     <addaction name="actionRate1_0"/>
+     <addaction name="actionRate1_5"/>
+     <addaction name="actionRate2"/>
+     <addaction name="actionRate2_5"/>
+    </widget>
+    <addaction name="menuspeed"/>
+   </widget>
+   <addaction name="menuoption"/>
+  </widget>
   <action name="actionaAtFirst">
    <property name="icon">
     <iconset resource="img.qrc">
@@ -217,6 +245,41 @@
    </property>
    <property name="text">
     <string>Full</string>
+   </property>
+  </action>
+  <action name="actionRate0_25">
+   <property name="text">
+    <string>0.25</string>
+   </property>
+  </action>
+  <action name="actionRate0_5">
+   <property name="text">
+    <string>0.5</string>
+   </property>
+  </action>
+  <action name="actionRate0_75">
+   <property name="text">
+    <string>0.75</string>
+   </property>
+  </action>
+  <action name="actionRate1_0">
+   <property name="text">
+    <string>1.0</string>
+   </property>
+  </action>
+  <action name="actionRate1_5">
+   <property name="text">
+    <string>1.5</string>
+   </property>
+  </action>
+  <action name="actionRate2">
+   <property name="text">
+    <string>2</string>
+   </property>
+  </action>
+  <action name="actionRate2_5">
+   <property name="text">
+    <string>2.5</string>
    </property>
   </action>
  </widget>

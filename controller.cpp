@@ -14,7 +14,7 @@ Controller::Controller(QWidget *parent) :
     ui->setupUi(this);
 
     // set background
-    QPixmap bkgnd("C:/Users/admin/Desktop/my_project/images_file/main.jpg");
+    QPixmap bkgnd("./../images_file/main.jpg");
     bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
     QPalette palette;
     palette.setBrush(QPalette::Background, bkgnd);

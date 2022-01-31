@@ -50,7 +50,7 @@ void Setting::on_jumpTimeUp_clicked()
 }
 
 int Setting::read(QString name){
-    QString fileAddress = "C:/Users/admin/Desktop/write/setting.txt";
+    QString fileAddress = "./../my_project/file/setting.txt";
     QFile MyFile(fileAddress);
 
     int line1;
@@ -87,7 +87,7 @@ void Setting::write(QString name, QString action){
             jumpTime-=1;
     }
 
-    QString fileAddress = "C:/Users/admin/Desktop/write/setting.txt";
+    QString fileAddress = "./../my_project/file/setting.txt";
     QFile MyFile(fileAddress);
 
     if(MyFile.open(QIODevice::ReadWrite)){

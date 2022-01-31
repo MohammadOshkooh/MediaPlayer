@@ -101,8 +101,8 @@ void PlayListClass::remove_file(QString fileName){
 
     if(result == QMessageBox::Yes){
 
-        QString fileAddress = "C:/Users/admin/Desktop/write/a.txt";
-        QString fileAddress2 = "C:/Users/admin/Desktop/write/a2.txt";
+        QString fileAddress = "./../my_project/file/playlist.txt";
+        QString fileAddress2 = "./../my_project/file/x.txt";
         QFile MyFile(fileAddress);
         QFile replaceFile(fileAddress2);
 
@@ -139,7 +139,7 @@ void PlayListClass::removeClickedMethod(){
 
 void PlayListClass::showPlaylist() {
     qDebug()<<"showPlaylist";
-    QString fileAddress = "C:/Users/admin/Desktop/write/a.txt";
+    QString fileAddress = "./../my_project/file/playlist.txt";
     QFile MyFile(fileAddress);
 
 
@@ -192,7 +192,7 @@ void PlayListClass::showPlaylist() {
 
 bool PlayListClass::fileIsExist(QString fileName){
     qDebug()<<"fileIsExist";
-    QString fileAddress = "C:/Users/admin/Desktop/write/a.txt";
+    QString fileAddress = "./../wa.txt";
     QFile MyFile(fileAddress);
 
     if(MyFile.open(QIODevice::ReadWrite)){
@@ -210,7 +210,7 @@ void PlayListClass::addToPlaylist(QString filename, int mode){
     qDebug()<<"addToPlaylist";
 
     if(!fileIsExist(filename) && filename.length()!=0){
-        QString fileAddress = "C:/Users/admin/Desktop/write/a.txt";
+        QString fileAddress = "./../my_project/file/playlist.txt";
         QFile MyFile(fileAddress);
         if(MyFile.open(QIODevice::Append)){
 
@@ -306,7 +306,7 @@ QString PlayListClass::previousVideo(QString fileName){
 
 
 QString PlayListClass::getFileNameNumberI(int i){
-    QString fileAddress = "C:/Users/admin/Desktop/write/a.txt";
+    QString fileAddress = "./../my_project/file/playlist.txt";
     QFile MyFile(fileAddress);
 
     QString fileName;
@@ -321,7 +321,7 @@ QString PlayListClass::getFileNameNumberI(int i){
 }
 
 int PlayListClass::getNumberFile(QString fileName){
-    QString fileAddress = "C:/Users/admin/Desktop/write/a.txt";
+    QString fileAddress = "./../my_project/file/playlist.txt";
     QFile MyFile(fileAddress);
     int number=0;
 
@@ -337,7 +337,7 @@ int PlayListClass::getNumberFile(QString fileName){
 }
 
 int PlayListClass::getLineCount(){
-    QString fileAddress = "C:/Users/admin/Desktop/write/a.txt";
+    QString fileAddress = "./../my_project/file/playlist.txt";
     QFile MyFile(fileAddress);
 
     int count=0;
@@ -353,7 +353,7 @@ int PlayListClass::getLineCount(){
 }
 
 void PlayListClass::clearPlaylist(){
-    QString fileAddress = "C:/Users/admin/Desktop/write/a.txt";
+    QString fileAddress = "./../my_project/file/playlist.txt";
 
     QFile MyFile(fileAddress);
 
@@ -369,4 +369,8 @@ void PlayListClass::on_actionBack_triggered()
     this->close();
     Controller *c = new Controller();
     c->show();
+
+
 }
+
+

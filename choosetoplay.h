@@ -72,6 +72,20 @@ private slots:
 
     void on_actionFull_triggered();
 
+    void on_actionRate0_25_triggered();
+
+    void on_actionRate1_5_triggered();
+
+    void on_actionRate0_75_triggered();
+
+    void on_actionRate1_0_triggered();
+
+    void on_actionRate2_triggered();
+
+    void on_actionRate2_5_triggered();
+
+    void on_actionRate0_5_triggered();
+
 private:
     Ui::ChooseToPlay *ui;
 

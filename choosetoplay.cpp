@@ -159,6 +159,7 @@ void ChooseToPlay::on_actionvolume_increase_triggered()
 
 void ChooseToPlay::on_actionvolume_dencrease_triggered()
 {
+
     int volum = player->volume();
     player->setVolume(volum-10);
     volume_label->setText(QString::number( player->volume()));
@@ -168,7 +169,12 @@ void ChooseToPlay::on_actionvolume_dencrease_triggered()
 void ChooseToPlay::on_actionopen_triggered()
 {
     player->stop();
-    QString fileName = QFileDialog::getOpenFileName(this,"Open a File","","Video File(*.mp4 , *.wmv)");
+    QString fileName = QFileDialog::getOpenFileName
+            (this,"","","video or music(*.mp4 , *.wmv , *.mkv , *.AVI , *.mp3)");
+
+//    QString fileName = QFileDialog::getOpenFileName
+//            (this,"Select one or more files to open", "/home", "Images (*.png *.xpm *.jpg)");
+
     playlist->addMedia(QMediaContent(QUrl::fromLocalFile(fileName)));
     player->setMedia(QUrl::fromLocalFile(fileName));
     player->setVideoOutput(videoWidget);
@@ -247,4 +253,42 @@ void ChooseToPlay::on_actionmin_triggered()
 void ChooseToPlay::on_actionFull_triggered()
 {
     this->setWindowState(Qt::WindowFullScreen);
+
+}
+
+void ChooseToPlay::on_actionRate0_25_triggered()
+{
+    player->setPlaybackRate(0.25);
+}
+
+void ChooseToPlay::on_actionRate1_5_triggered()
+{
+    player->setPlaybackRate(1.5);
+}
+
+void ChooseToPlay::on_actionRate0_75_triggered()
+{
+    player->setPlaybackRate(0.75);
+}
+
+void ChooseToPlay::on_actionRate1_0_triggered()
+{
+    player->setPlaybackRate(1.0);
+}
+
+void ChooseToPlay::on_actionRate2_triggered()
+{
+    player->setPlaybackRate(2);
+}
+
+void ChooseToPlay::on_actionRate2_5_triggered()
+{
+    player->setPlaybackRate(2.5);
+}
+
+void ChooseToPlay::on_actionRate0_5_triggered()
+{
+    player->setPlaybackRate(0.5);
+
+
 }
