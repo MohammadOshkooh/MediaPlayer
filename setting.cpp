@@ -5,6 +5,9 @@
 #include<QPushButton>
 #include<QFile>
 #include<QTextStream>
+#include<playlistclass.h>
+#include<QMessageBox>
+#include<QDebug>
 
 Setting::Setting(QWidget *parent) :
     QWidget(parent),
@@ -98,4 +101,24 @@ void Setting::write(QString name, QString action){
 void Setting::showView(){
     ui->volume_label->setText(QString::number(read("volume")));
     ui->jump_label->setText(QString::number(read("jumpTime")));
+}
+
+void Setting::on_clearPlaylist_clicked()
+{
+    QMessageBox msg;
+
+    msg.setWindowTitle("clear playlist");
+
+    msg.addButton(QMessageBox::Yes);
+    msg.addButton(QMessageBox::No);
+
+    msg.setText("Do you want to clear playlist?");
+    int result = msg.exec();
+    if(result == QMessageBox::Yes){
+        PlayListClass *p = new PlayListClass(4);
+        qDebug()<<"1";
+        p->clearPlaylist();
+        msg.setText("The playlist was cleared successfully");
+        msg.exec();
+    }
 }

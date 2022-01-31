@@ -19,7 +19,7 @@ class PlayListClass : public QMainWindow
 
 public:
     explicit PlayListClass(QMediaPlayer *qmp = nullptr, QMediaPlaylist *qmpl = nullptr);
-
+    PlayListClass(int n);
     bool removeMode=false;
 
     QTableWidget *table;
@@ -33,6 +33,7 @@ public:
     void removeClickedMethod();
     void addToPlaylist(QString fileName);
     void tableDoubleClicked();
+    void clearPlaylist();
 
     QString nextVideo(QString fileName);
     QString previousVideo(QString fileName);

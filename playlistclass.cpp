@@ -15,6 +15,10 @@
 
 using namespace std;
 
+PlayListClass::PlayListClass(int n){
+
+}
+
 PlayListClass::PlayListClass(QMediaPlayer *qmp , QMediaPlaylist *qmpl ) :
  //   QMainWindow(parent),
     ui(new Ui::PlayListClass)
@@ -346,4 +350,16 @@ int PlayListClass::getLineCount(){
         }
         return count;
     }
+}
+
+void PlayListClass::clearPlaylist(){
+    QString fileAddress = "C:/Users/admin/Desktop/write/a.txt";
+
+    QFile MyFile(fileAddress);
+
+    if(MyFile.open(QIODevice::ReadWrite)){
+            MyFile.remove();
+            MyFile.close();
+    }
+
 }

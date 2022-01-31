@@ -30,6 +30,8 @@ private slots:
 
     void on_jumpTimeUp_clicked();
 
+    void on_clearPlaylist_clicked();
+
 private:
     Ui::Setting *ui;
 };
