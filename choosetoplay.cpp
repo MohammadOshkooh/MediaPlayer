@@ -36,6 +36,11 @@ ChooseToPlay::ChooseToPlay(QMediaPlayer *qmp, QMediaPlaylist *qmpl) :
 
     connect(slider,&QSlider::sliderMoved,player,&QMediaPlayer::setPosition);
 
+
+    // پس از اتمام پخش یک فایل، در صورت وجود فایل بعدی، آن فایل پخش شود
+
+    connect(player, &QMediaPlayer::positionChanged, this, &ChooseToPlay::playNextVideoAtEndThisVideo);
+
 //  show volum
     QLabel *l = new QLabel;
     l->setText("  volume:");
@@ -189,11 +194,20 @@ void ChooseToPlay::on_actionnext_video_triggered()
 
 void ChooseToPlay::on_actionprevious_video_triggered()
 {
-    QString fileName = player->currentMedia().canonicalUrl().toString();
-    fileName.remove(0,8); // for example : "file:///C:/Users/admin/Videos/s.mp4"
-
-    QString newFileName = playlistClass->previousVideo(fileName);
+    QString newFileName = playlistClass->previousVideo(fileNameBeingPlayed());
 
     player->setMedia(QUrl::fromLocalFile(newFileName));
     player->play();
+}
+
+
+void ChooseToPlay::playNextVideoAtEndThisVideo(){
+    if(player->position() == player->duration() && player->duration()!=0)
+        on_actionnext_video_triggered();
+}
+
+QString ChooseToPlay::fileNameBeingPlayed(){
+    QString fileName = player->currentMedia().canonicalUrl().toString();
+    fileName.remove(0,8); // for example : "file:///C:/Users/admin/Videos/s.mp4"
+    return fileName;
 }

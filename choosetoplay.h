@@ -31,6 +31,8 @@ public:
     void set_playlist(PlayListClass &playlist);
     void set_setting(Setting &setting);
     void playByGetFileName(QString fileName);
+    void playNextVideoAtEndThisVideo();
+    QString fileNameBeingPlayed();
     ~ChooseToPlay();    
 
 public slots:
