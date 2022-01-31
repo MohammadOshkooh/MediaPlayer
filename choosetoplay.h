@@ -7,7 +7,6 @@
 #include <QFileDialog>
 #include <QSlider>
 #include <QLabel>
-#include <QMediaPlaylist>
 #include "playlistclass.h"
 #include "setting.h"
 
@@ -20,14 +19,13 @@ class ChooseToPlay : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit ChooseToPlay(QWidget *parent = nullptr, QMediaPlayer *qmp = nullptr, QMediaPlaylist *qmpl = nullptr);
-    ChooseToPlay(QMediaPlayer *qmp, QMediaPlaylist *qmpl);
+    explicit ChooseToPlay(QWidget *parent = nullptr, QMediaPlayer *qmp = nullptr);
+    ChooseToPlay(QMediaPlayer *qmp);
     QMediaPlayer *player;
     QVideoWidget *videoWidget;
     Setting *setting ;
     QSlider *slider;
     QLabel *volume_label;
-    QMediaPlaylist *playlist;
     PlayListClass *playlistClass;
     void set_playlist(PlayListClass &playlist);
     void set_setting(Setting &setting);

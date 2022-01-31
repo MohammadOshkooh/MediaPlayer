@@ -9,7 +9,7 @@
 #include<QMessageBox>
 
 
-Setting::Setting(QWidget *parent) :
+Setting::Setting(QMainWindow *parent) :
     QMainWindow(parent),
     ui(new Ui::Setting)
 {
@@ -127,5 +127,6 @@ void Setting::on_actionBack_triggered()
 {
     this->close();
     Controller *c = new Controller();
+    c->setWindowFlag(Qt::FramelessWindowHint);
     c->show();
 }

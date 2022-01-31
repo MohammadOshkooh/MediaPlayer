@@ -12,7 +12,7 @@ class Setting : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit Setting(QWidget *parent = nullptr);
+    explicit Setting(QMainWindow *parent = nullptr);
     Setting *setting;
     int read(QString name);
     void write(QString name, QString action);

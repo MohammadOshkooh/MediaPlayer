@@ -7,8 +7,8 @@
 #include "playlistclass.h"
 #include "setting.h"
 
-Controller::Controller(QWidget *parent) :
-    QWidget(parent),
+Controller::Controller(QMainWindow *parent) :
+    QMainWindow(parent),
     ui(new Ui::Controller)
 {
     ui->setupUi(this);
@@ -21,12 +21,14 @@ Controller::Controller(QWidget *parent) :
     this->setPalette(palette);
 
     player = new QMediaPlayer();
-    playlist = new QMediaPlaylist();
 
-    chooseToPlay = new ChooseToPlay(this,player,playlist);
-    playlist_class = new PlayListClass(player, playlist);
+    chooseToPlay = new ChooseToPlay(this,player);
+    playlist_class = new PlayListClass(player);
     setting = new Setting();
 
+    chooseToPlay->setWindowFlag(Qt::FramelessWindowHint);
+    playlist_class->setWindowFlag(Qt::FramelessWindowHint);
+    setting->setWindowFlag(Qt::FramelessWindowHint);
 
 }
 

@@ -10,18 +10,17 @@ namespace Ui {
 class Controller;
 }
 
-class Controller : public QWidget
+class Controller : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit Controller(QWidget *parent = nullptr);
+    explicit Controller(QMainWindow *parent = nullptr);
     ChooseToPlay *chooseToPlay;
     Setting *setting;
     PlayListClass *playlist_class;
 
     QMediaPlayer *player;
-    QMediaPlaylist *playlist;
 
     ~Controller();
 

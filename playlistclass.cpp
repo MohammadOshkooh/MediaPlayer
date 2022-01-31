@@ -19,13 +19,12 @@ PlayListClass::PlayListClass(int n){
 
 }
 
-PlayListClass::PlayListClass(QMediaPlayer *qmp , QMediaPlaylist *qmpl ) :
+PlayListClass::PlayListClass(QMediaPlayer *qmp) :
  //   QMainWindow(parent),
     ui(new Ui::PlayListClass)
 {
     ui->setupUi(this);
     player = qmp;
-    playlist = qmpl;
     table = new QTableWidget();
     model = new QStandardItemModel();
 
@@ -73,7 +72,7 @@ void PlayListClass::tableDoubleClicked(){
             QFile f(fileName);
 
             if (f.exists()){
-                ChooseToPlay *c = new ChooseToPlay(player,playlist);
+                ChooseToPlay *c = new ChooseToPlay(player);
                 c->playByGetFileName(fileName);
                 c->show();
             }
@@ -361,16 +360,14 @@ void PlayListClass::clearPlaylist(){
             MyFile.remove();
             MyFile.close();
     }
-
 }
 
 void PlayListClass::on_actionBack_triggered()
 {
     this->close();
     Controller *c = new Controller();
+    c->setWindowFlag(Qt::FramelessWindowHint);
     c->show();
-
-
 }
 
 

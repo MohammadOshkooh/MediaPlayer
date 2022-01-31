@@ -2,7 +2,6 @@
 #define PLAYLISTCLASS_H
 
 #include <QMainWindow>
-#include <QMediaPlaylist>
 #include <QStandardItemModel>
 #include <QMediaPlayer>
 #include <QTableView>
@@ -18,12 +17,11 @@ class PlayListClass : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit PlayListClass(QMediaPlayer *qmp = nullptr, QMediaPlaylist *qmpl = nullptr);
+    explicit PlayListClass(QMediaPlayer *qmp = nullptr);
     PlayListClass(int n);
     bool removeMode=false;
 
     QTableWidget *table;
-    QMediaPlaylist *playlist;
     QMediaPlayer *player;
     QStandardItemModel * model;
 

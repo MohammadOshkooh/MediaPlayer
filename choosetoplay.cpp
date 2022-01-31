@@ -12,7 +12,7 @@
 using namespace std;
 
 
-ChooseToPlay::ChooseToPlay(QMediaPlayer *qmp, QMediaPlaylist *qmpl) :
+ChooseToPlay::ChooseToPlay(QMediaPlayer *qmp) :
    // QMainWindow(parent),
     ui(new Ui::ChooseToPlay)
 {
@@ -20,8 +20,6 @@ ChooseToPlay::ChooseToPlay(QMediaPlayer *qmp, QMediaPlaylist *qmpl) :
 
     player = qmp;
     videoWidget = new QVideoWidget(this);
-    playlist = qmpl;
-    player->setPlaylist(playlist);
     setting = new Setting;
 
     player->setVideoOutput(videoWidget);
@@ -62,7 +60,7 @@ ChooseToPlay::ChooseToPlay(QMediaPlayer *qmp, QMediaPlaylist *qmpl) :
 
 
 
-ChooseToPlay::ChooseToPlay(QWidget *parent, QMediaPlayer *qmp, QMediaPlaylist *qmpl) :
+ChooseToPlay::ChooseToPlay(QWidget *parent, QMediaPlayer *qmp) :
     QMainWindow(parent),
     ui(new Ui::ChooseToPlay)
 {
@@ -70,11 +68,9 @@ ChooseToPlay::ChooseToPlay(QWidget *parent, QMediaPlayer *qmp, QMediaPlaylist *q
 
     player = qmp;
     videoWidget = new QVideoWidget(this);
-    playlist = qmpl;
-    playlistClass = new PlayListClass(player, playlist);
-    setting = new Setting;
 
-    player->setPlaylist(playlist);
+    playlistClass = new PlayListClass(player);
+    setting = new Setting;
 
     player->setVideoOutput(videoWidget);
     this->setCentralWidget(videoWidget);
@@ -175,12 +171,9 @@ void ChooseToPlay::on_actionopen_triggered()
 //    QString fileName = QFileDialog::getOpenFileName
 //            (this,"Select one or more files to open", "/home", "Images (*.png *.xpm *.jpg)");
 
-    playlist->addMedia(QMediaContent(QUrl::fromLocalFile(fileName)));
     player->setMedia(QUrl::fromLocalFile(fileName));
     player->setVideoOutput(videoWidget);
     this->setCentralWidget(videoWidget);
-
-    playlist->save(QUrl::fromLocalFile("C:/Users/admin/Desktop/write/playlist.m3u"),"m3u");
 
     playlistClass->addToPlaylist(fileName,1);
 
@@ -230,6 +223,7 @@ void ChooseToPlay::on_actionBack_triggered()
     player->stop();
     this->close();
     Controller *c = new Controller();
+    c->setWindowFlag(Qt::FramelessWindowHint);
     c->show();
 }
 
