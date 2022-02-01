@@ -9,6 +9,7 @@
 #include <QLabel>
 #include "playlistclass.h"
 #include "setting.h"
+#include"setsize.h"
 
 namespace Ui {
 class ChooseToPlay;
@@ -26,11 +27,13 @@ public:
     Setting *setting ;
     QSlider *slider;
     QLabel *volume_label;
+    SetSize *s;
     PlayListClass *playlistClass;
     void set_playlist(PlayListClass &playlist);
     void set_setting(Setting &setting);
     void playByGetFileName(QString fileName);
     void playNextVideoAtEndThisVideo();
+    void setSize(int h, int w);
     QString fileNameBeingPlayed();
     ~ChooseToPlay();    
 
@@ -83,6 +86,8 @@ private slots:
     void on_actionRate2_5_triggered();
 
     void on_actionRate0_5_triggered();
+
+    void on_actionclick_for_resizing_triggered();
 
 private:
     Ui::ChooseToPlay *ui;

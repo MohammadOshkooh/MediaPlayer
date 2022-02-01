@@ -23,18 +23,21 @@ SOURCES += \
     controller.cpp \
     main.cpp \
     playlistclass.cpp \
+    setsize.cpp \
     setting.cpp
 
 HEADERS += \
     choosetoplay.h \
     controller.h \
     playlistclass.h \
+    setsize.h \
     setting.h
 
 FORMS += \
     choosetoplay.ui \
     controller.ui \
     playlistclass.ui \
+    setsize.ui \
     setting.ui
 
 # Default rules for deployment.

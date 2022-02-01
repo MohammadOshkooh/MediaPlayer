@@ -96,7 +96,14 @@
      <addaction name="actionRate2"/>
      <addaction name="actionRate2_5"/>
     </widget>
+    <widget class="QMenu" name="menuresize">
+     <property name="title">
+      <string>resize</string>
+     </property>
+     <addaction name="actionclick_for_resizing"/>
+    </widget>
     <addaction name="menuspeed"/>
+    <addaction name="menuresize"/>
    </widget>
    <addaction name="menuoption"/>
   </widget>
@@ -280,6 +287,21 @@
   <action name="actionRate2_5">
    <property name="text">
     <string>2.5</string>
+   </property>
+  </action>
+  <action name="action100x100">
+   <property name="text">
+    <string>100x100</string>
+   </property>
+  </action>
+  <action name="action200x200">
+   <property name="text">
+    <string>200x200</string>
+   </property>
+  </action>
+  <action name="actionclick_for_resizing">
+   <property name="text">
+    <string>click for resizing</string>
    </property>
   </action>
  </widget>

@@ -22,7 +22,7 @@ Controller::Controller(QMainWindow *parent) :
 
     player = new QMediaPlayer();
 
-    chooseToPlay = new ChooseToPlay(this,player);
+    chooseToPlay = new ChooseToPlay(player);
     playlist_class = new PlayListClass(player);
     setting = new Setting();
 
