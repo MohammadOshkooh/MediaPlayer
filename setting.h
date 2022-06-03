@@ -20,7 +20,6 @@ public:
     ~Setting();
 
 private slots:
-    void on_pushButton_clicked();
 
     void on_volumeDown_clicked();
 

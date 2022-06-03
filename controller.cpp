@@ -20,6 +20,7 @@ Controller::Controller(QMainWindow *parent) :
     palette.setBrush(QPalette::Background, bkgnd);
     this->setPalette(palette);
 
+
     player = new QMediaPlayer();
 
     chooseToPlay = new ChooseToPlay(player);
