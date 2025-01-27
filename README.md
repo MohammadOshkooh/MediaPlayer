@@ -6,11 +6,11 @@ A **modern** and **intuitive** media player built using **Qt** and **C++**, desi
 ---
 
 ## ✨ Features  
-✔️ **Play, Pause, Stop**: Full control over playback.  
-✔️ **Volume Control**: Easily adjust the volume or mute with one click.  
-✔️ **Playlist Management**: Organize your media files by adding, removing, or rearranging them.  
-✔️ **Wide Format Support**: Supports popular audio/video formats (MP3, MP4, WAV, AVI, etc.).  
-✔️ **Clean and Customizable UI**: Built with user experience in mind, powered by Qt.  
+✔️  **Play, Pause, Stop**: Full control over playback.  
+✔️  **Volume Control**: Easily adjust the volume or mute with one click.  
+✔️  **Playlist Management**: Organize your media files by adding, removing, or rearranging them.  
+✔️  **Wide Format Support**: Supports popular audio/video formats (MP3, MP4, WAV, AVI, etc.).  
+✔️  **Clean and Customizable UI**: Built with user experience in mind, powered by Qt.  
 
 ---
 
